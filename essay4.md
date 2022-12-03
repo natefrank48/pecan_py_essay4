@@ -60,3 +60,21 @@ and properly scanning in data.
     * As an edge detector, laplacian filters are used to compute second derivatives on an image, measuring the rate at which first derivatives change.
      This determines if a change in adjacent pixel values originate from an edge or continuous progression.
      ![Laplace image](laplace-image.png)
+
+### Snapshot
+* methods
+  * extract_image() - get the image in YUV and converts it to RGB for processing by calling yuv_to_rgb()
+  * get_snapshots() - gets an image from the rear of the vehicle and the front
+  * jpeg_write() - creats an image memory and saves it
+  * snapshot() - works like the main function for snapshots calling all of the other processes and returning the images from get_snapshots()
+  * yuv_to_rgb() - converts picture from YUV to RGB
+
+### init
+* nothing in here?
+
+### main
+* checks hardware
+* sets real time priority
+* sets core affinity - this is done on the operating system
+* does not work offroad
+* calls camera_thread in camera_commons.cc to take pictures and process them
