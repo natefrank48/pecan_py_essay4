@@ -61,9 +61,17 @@ and properly scanning in data.
      This determines if a change in adjacent pixel values originate from an edge or continuous progression.
      ![Laplace image](laplace-image.png)
 
-### Inlucde
-* One media folder which contains 13 .h files which are all the medias that are being use. 
-* Five msm folders that are sensor .h files, these all help to move camerad to the system. They main purpose of this include folder would be to make sure the sensors are being engaged as they are all being defaulted in each file. 
+### Include
+* One media folder which contains 13 .h files which are all the medias that are being used. 
+* Five msm folders that are sensor .h files, these all help to move camerad to the system. The main purpose of this include folder would be to make sure the sensors are being engaged as they are all being defaulted in each file. 
+* Inside the media folder, there are all these headers being defined for different parts of the camera family
+* All hardware stuff, like opcodes and structs being created and defined in headers to be used in the other files for sensors
+* Not much "logic" coding going on in these include files, mainly all .h header files that are just, as the folder name implies, being included.
+    * msm_cam_sensor.h - creates many structs and buffers for all of the cam sensors
+    * msm_camsensor_sdk.h - creating the headers
+    * msmb_camera.h - This one is making sure the stream isn't being over filled, creates buffers and testing situations to avoid overflows.
+    * msmb_isp.h - This file includes the linux/videodev2.h header, so it goes into tracking patterns and what to do when stream stopped
+    * msmb_ispif.h - Short file. Makes sure proper bits being addressed to. 
 
 ### Snapshot
 * methods
