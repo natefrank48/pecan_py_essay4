@@ -61,6 +61,10 @@ and properly scanning in data.
      This determines if a change in adjacent pixel values originate from an edge or continuous progression.
      ![Laplace image](laplace-image.png)
 
+### Inlucde
+* One media folder which contains 13 .h files which are all the medias that are being use. 
+* Five msm folders that are sensor .h files, these all help to move camerad to the system. They main purpose of this include folder would be to make sure the sensors are being engaged as they are all being defaulted in each file. 
+
 ### Snapshot
 * methods
   * extract_image() - get the image in YUV and converts it to RGB for processing by calling yuv_to_rgb()
