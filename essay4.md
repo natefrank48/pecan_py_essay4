@@ -71,20 +71,8 @@ Lastly, [frame_test.py](https://github.com/commaai/openpilot/blob/master/system/
     * msmb_isp.h - This file includes the linux/videodev2.h header, so it goes into tracking patterns and what to do when stream stopped
     * msmb_ispif.h - Short file. Makes sure proper bits being addressed to. 
 
-### Snapshot
-* methods
-  * extract_image() - get the image in YUV and converts it to RGB for processing by calling yuv_to_rgb()
-  * get_snapshots() - gets an image from the rear of the vehicle and the front
-  * jpeg_write() - creats an image memory and saves it
-  * snapshot() - works like the main function for snapshots calling all of the other processes and returning the images from get_snapshots()
-  * yuv_to_rgb() - converts picture from YUV to RGB
+### Snapshot methods
+There are many methods for snapshots to be created and processed for openpilot. The first method is extract_image. It gets the image in YUV and converts it to RGB for processing by calling yuv_to_rgb. The yuv_to_rgb method converts picture from YUV to RGB. YUV images use less bandwidth than RGB images, which will allow the image to be transported faster. The method get_snapshots recieves an image from the rear and front of the vehicle to use for processing and eventually decision making. To create an image memory and save it, jpeg_write is used. The snapshot method works like the main function for snapshots calling all of the other processes and returning the images from get_snapshots.
 
-### init
-* nothing in here?
-
-### main
-* checks hardware
-* sets real time priority
-* sets core affinity - this is done on the operating system
-* does not work offroad
-* calls camera_thread in camera_commons.cc to take pictures and process them
+### Main method
+The main method for snapshots works by first checking the hardware it is running on. If it is running on a PC, snapshots are not meant to be taken. Then it sets real time priority to 53. The real time priority works with interupts in the C language and is the precedence of these interupts. Next the core affinity is set to 6, and this is done on the operating system. The next thing that the main method does is check if the car is offroad. The images do not need to be captured if the car is off road because openpilot is not meant for offroading. Lastly, the method calls camera_thread in camera_commons.cc to take pictures and process them.
