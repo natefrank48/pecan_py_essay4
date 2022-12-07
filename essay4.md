@@ -44,6 +44,7 @@ Lastly, [frame_test.py](https://github.com/commaai/openpilot/blob/master/system/
 
 ### Chronological flow (image processing)
 The Comma Device, a.k.a the camera, utilizes the camera daemon to capture both the road and driver camera. The images then undergo processes in the camerad directory such as image extraction in [snapshot](https://github.com/commaai/openpilot/tree/master/system/camerad/snapshot) and image processing in [imgproc](https://github.com/commaai/openpilot/tree/master/system/camerad/imgproc). Lastly, camera daemon uses VisionIPC and the Cereal library to send the frames data to the model daemon, which then computes predictions based on the data. The activity diagram below (source: page 148 of openPilot's official documentation) summarizes the major processes in the camerad module.
+
 ![camerad activity diagram](chronological-flow.png)
 
 ### imgproc
