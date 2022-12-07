@@ -1,4 +1,11 @@
 ## camerad Module Overview
+### Introduction
+[openpilot](https://github.com/commaai/openpilot/blob/master/README.md) is an 
+open-source project focused on self-driving, with one core elements being the 
+camera. The camera provides key data about the car's current position and 
+the driver's awareness level, which eventually leads to the software making key decisions
+on what to do next. In order to better understand how openpilot functions, we decided
+to further investigate the [camera](https://github.com/commaai/openpilot/tree/master/system/camerad).
 
 ### cameras Directory
 Inside the [cameras directory](https://github.com/commaai/openpilot/tree/master/system/camerad/cameras), there are 5 main files, each with its key elements. 
