@@ -43,21 +43,13 @@ The Python tests inside the test directory mainly apply to the latest comma thre
 Lastly, [frame_test.py](https://github.com/commaai/openpilot/blob/master/system/camerad/test/frame_test.py)t validates all the imaging libraries and the camera message publishing system (cereal) is working properly.
 
 ### imgproc
-* Two .cl files, representing computing language files which are used for accelerating speed and responsiveness of applications such as vision processing and neural network training.
-* mainly focus on conv.cl - takes an RGB image and performs convolution between the kernel and the image
-    * in image processing, a kernel is a small matrix used for blurring, sharpening, and edge detection
-    * convolution is a mathematical operation which involves two functions (such as f and g) and produces a third function (f \* g)
-    * However, in image processing terms, convolution refers to the process of adding each element of an image to its local neighbors, weighted by the kernel. This relates to the form of the matrix operation used in mathematical convolution
-    * When convolution is applied, the original image(denoted as f(x,y)) undergoes a specific operation involving the filter kernel(denoted as the omega function, w) that can produce a wide range of effects, producing a filtered image(denoted as g(x,y))
-    * Therefore, the conv.cl file in openPilot functions by caching local pixels of an image, comparing the size to that of the filter size, and finally performing convolution operations
-    * This results in a resulting image which would be a weighted sum or combination of all the entries of the image matrix, with weights given by the kernel
-* pool.cl - calculates the variance in each subregion of an image
-* utils.cc - contains utility helper functions that help perform more complex mathematical operation
-    * LapConv which is assumed to be a helper function to perform Laplace Transform Convolution
-    * Laplacian filters are used to detect edges in images. As a spacial filter, it helps to reduce spatial noise and enhance prediction in image processing
-    * As an edge detector, laplacian filters are used to compute second derivatives on an image, measuring the rate at which first derivatives change.
-     This determines if a change in adjacent pixel values originate from an edge or continuous progression.
-     ![Laplace image](laplace-image.png)
+In the imgproc folder, there contains two .cl files that represent computing language files that are used to compute accelerating speed and responsiveness of applications such as the vision processing and neural network training. The first file, conv.cl, is the main file which contain code that processes the image. In general, the code functions by reading an RGB image and performs convolution between the kernel and the image. In image processing, a kernel is a small matrix that is used for blurring, sharpening, and edge detection in images. Convolution is a mathematical operation which involves two functions (such as f and g) and produces a third function (f \* g). However, in image processing terms, convolution refers to the process of adding each element of an image to its local neighbors, weighted by the kernel. This relates to the form of the matrix operation used in mathematical convolution.
+
+When convolution is applied, the original image(denoted as f(x,y)) undergoes a specific operation involving the filter kernel (denoted as the omega function, w) that can produce a wide range of effects, producing a filtered image (denoted as g(x,y)). To be put in simpler terms, the conv.cl file in openPilot functions by caching local pixels of an image, comparing the image size to that of the filter size, and finally performing convolution operations. The resulting image from this process will be a weighted sum or combination of all the entries of the image matrix, with weights given by the kernel.
+
+The other .cl file, pool.cl, functions to calculate the variance in each subregion of an image. In utils.cc, the file basically works as a utility file that contains helper functions that help perform more complex mathematical operations. The *LapConv* function is a helper function which performs Laplace Transform Convolution, which assists in the convolution of images in the conv.cl file. Laplacian filters are used to detect edges in images. As a spacial filter, it helps to reduce spatial noise and enhance prediction in image processing. This is important because each frame being fed into openPilot through the comma device has to be accurately processed continuously to constanly produce accurate and safe predictions for the vehicle. As an edge detector, laplacian filters are used to compute second derivatives on an image, measuring the rate at which first derivatives change. This determines if a change in an adjacent pixel values originate from an edge or continuous progression. An attached image below explains how laplacian filters affect an image.
+
+![Laplace image](laplace-image.png)
 
 ### Include
 * One media folder which contains 13 .h files which are all the medias that are being used. 
