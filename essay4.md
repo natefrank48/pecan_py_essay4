@@ -7,7 +7,7 @@ the driver's awareness level, which eventually leads to the software making key 
 on what to do next. In order to better understand how openpilot functions, we decided
 to further investigate the [camera](https://github.com/commaai/openpilot/tree/master/system/camerad).
 
-We dive into the five main directories/folders: cameras, test, imgproc, include, snapshot. 
+We dive into the five main directories/folders: cameras, test, imgproc, include, and snapshot. 
 
 ### **cameras Directory**
 Inside the [cameras directory](https://github.com/commaai/openpilot/tree/master/system/camerad/cameras), there are 5 main files, each with its key elements. 
